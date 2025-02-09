@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const nodemailer = require("nodemailer");
 
 const app = express();
@@ -7,7 +8,15 @@ const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.options("*", cors());
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5175");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.send();
+});
 
+app.use(cors());
 // Create a Nodemailer transporter using your email provider settings.
 // In this example, we're using Gmail.
 const transporter = nodemailer.createTransport({
@@ -31,6 +40,7 @@ transporter.verify((error, success) => {
 app.post("/send-email", async (req, res) => {
   // Extract required fields from the request body
   const { to, subject, phrase, html } = req.body;
+  res.header("Access-Control-Allow-Origin", "*");
 
   // Basic validation
   if (!to || !subject || (!phrase && !html)) {
