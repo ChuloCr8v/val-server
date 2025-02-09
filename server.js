@@ -30,10 +30,10 @@ transporter.verify((error, success) => {
 // API endpoint to send email
 app.post("/send-email", async (req, res) => {
   // Extract required fields from the request body
-  const { to, subject, text, html } = req.body;
+  const { to, subject, phrase, html } = req.body;
 
   // Basic validation
-  if (!to || !subject || (!text && !html)) {
+  if (!to || !subject || (!phrase && !html)) {
     return res.status(400).json({
       message: "Missing required fields: to, subject, and either text or html",
     });
@@ -44,7 +44,7 @@ app.post("/send-email", async (req, res) => {
     from: process.env.EMAIL_USER, // sender address
     to, // recipient(s)
     subject, // email subject
-    text, // plain text body (optional)
+    phrase, // plain text body (optional)
     html, // HTML body (optional)
   };
 
