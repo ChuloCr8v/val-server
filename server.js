@@ -45,7 +45,7 @@ app.post("/send-email", async (req, res) => {
 
   // Email options
   const mailOptions = {
-    from: "me", // sender address
+    from: process.env.EMAIL_USER, // sender address
     to, // recipient(s)
     subject, // email subject
     text: phrase, // plain text body (optional)
