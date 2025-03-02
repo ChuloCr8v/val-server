@@ -51,7 +51,7 @@ app.post("/", async (req, res) => {
     text: phrase, // plain text body (optional)
     html, // HTML body (optional)
     headers: {
-      "Message-ID": `<${Date.now()}@servertest.com>`, // Unique Message-ID
+      "Message-ID": `<${new Date.now()}@servertest.com>`, // Unique Message-ID
       References: "", // Prevent threading
       "In-Reply-To": "", // Prevent threading
     },
