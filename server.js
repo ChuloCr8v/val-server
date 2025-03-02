@@ -50,11 +50,11 @@ app.post("/", async (req, res) => {
     subject, // email subject
     text: phrase, // plain text body (optional)
     html, // HTML body (optional)
-    headers: {
-      "Message-ID": `<${new Date.now()}@servertest.com>`, // Unique Message-ID
-      References: "", // Prevent threading
-      "In-Reply-To": "", // Prevent threading
-    },
+    // headers: {
+    //   "Message-ID": `<${new Date.now()}@servertest.com>`, // Unique Message-ID
+    //   References: "", // Prevent threading
+    //   "In-Reply-To": "", // Prevent threading
+    // },
   };
 
   try {
