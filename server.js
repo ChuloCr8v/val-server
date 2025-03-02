@@ -31,7 +31,7 @@ transporter.verify((error, success) => {
 });
 
 // API endpoint to send email
-app.post("/send-email", async (req, res) => {
+app.post("/", async (req, res) => {
   // Extract required fields from the request body
   const { to, subject, phrase, html } = req.body;
   res.header("Access-Control-Allow-Origin", "*");
